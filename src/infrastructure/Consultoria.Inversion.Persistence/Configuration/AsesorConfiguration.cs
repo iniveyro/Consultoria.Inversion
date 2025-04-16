@@ -16,6 +16,9 @@ namespace Consultoria.Inversion.Persistence.Configuration
             entityBuilder.Property(x=>x.DNI).IsRequired();
             entityBuilder.Property(x=>x.Email).IsRequired();
             entityBuilder.Property(x=>x.NombApe).IsRequired();
+            entityBuilder.HasMany(x=>x.Inversiones)
+            .WithOne(x=>x.Asesor)
+            .HasForeignKey(x=>x.AsesorId);   
         }
     }
 }

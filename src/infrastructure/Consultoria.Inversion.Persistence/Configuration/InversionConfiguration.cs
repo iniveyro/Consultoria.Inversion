@@ -23,6 +23,12 @@ namespace Consultoria.Inversion.Persistence.Configuration
             //Claves foraneas
             entityBuilder.Property(x=>x.AsesorId).IsRequired();
             entityBuilder.Property(x=>x.UserId).IsRequired();
+            entityBuilder.HasOne(x=>x.User)
+                .WithMany(x=>x.Inversiones)
+                .HasForeignKey(x=>x.UserId);
+            entityBuilder.HasOne(x=>x.Asesor)
+                .WithMany(x=>x.Inversiones)
+                .HasForeignKey(x=>x.AsesorId);
         }
     }
 }

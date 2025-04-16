@@ -13,6 +13,7 @@ namespace Consultoria.Inversion.Domain.Models
         public DateOnly FechaRegistro {get;set;} 
         //Clave Foraneas
         public int AsesorId {get;set;}
+        public AsesorModel Asesor {get;set;}
         public ICollection<InversionModel> Inversiones {get;set;}
     }
 }
