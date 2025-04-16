@@ -1,4 +1,4 @@
-namespace Consultora.Inversion.Domain.Enums
+namespace Consultoria.Inversion.Domain.Enums
 {
     public enum Certificaciones
     {

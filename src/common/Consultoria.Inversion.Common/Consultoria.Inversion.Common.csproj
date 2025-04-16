@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="../../core/Consultora.Inversion.Domain/Consultora.Inversion.Domain.csproj" />
-  </ItemGroup>
-
 </Project>

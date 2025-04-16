@@ -54,3 +54,4 @@ TestResult.xml
 nunit-*.xml
 
 /.idea
+/src/api/Consultoria.Inversion.Api/appsettings.secret.json
