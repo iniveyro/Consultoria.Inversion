@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../../core/Consultoria.Inversion.Application/Consultoria.Inversion.Application.csproj" />
     <ProjectReference Include="../../core/Consultoria.Inversion.Domain/Consultoria.Inversion.Domain.csproj" />
   </ItemGroup>
 

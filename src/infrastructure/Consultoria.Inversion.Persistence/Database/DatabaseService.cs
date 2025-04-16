@@ -1,10 +1,11 @@
 using Consultoria.Inversion.Domain.Models;
 using Consultoria.Inversion.Persistence.Configuration;
 using Microsoft.EntityFrameworkCore;
+using Consultoria.Inversion.Application.Interfaces;
 
 namespace Consultoria.Inversion.Persistence.Database
 {
-    public class DatabaseService : DbContext
+    public class DatabaseService : DbContext, IDatabaseService
     {
         public DatabaseService(DbContextOptions options) : base(options)
         {
