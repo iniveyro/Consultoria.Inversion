@@ -5,5 +5,6 @@ namespace Consultoria.Inversion.Domain.Enums
         CPA,
         CFP,
         IAEF,
+        Ninguna,
     }
 }

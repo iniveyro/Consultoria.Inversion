@@ -1,17 +1,18 @@
-using Microsoft.EntityFrameworkCore.SqlServer;
-using Microsoft.EntityFrameworkCore.Storage;
 using Consultoria.Inversion.Persistence;
-using Consultoria.Inversion.Persistence.Database;
-using Microsoft.EntityFrameworkCore;
-using Consultoria.Inversion.Application.Interfaces;
+using Consultoria.Inversion.Api;
+using Consultoria.Inversion.Common;
+using Consultoria.Inversion.Application;
+using Consultoria.Inversion.External;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<DatabaseService>(options => 
-    options.UseSqlServer(builder.Configuration["SQLConnection"])
-);
-
-builder.Services.AddScoped<IDatabaseService,DatabaseService>();
+builder.Configuration.AddJsonFile("appsettings.secret.json", optional: false, reloadOnChange: true);
+builder.Services
+    .AddWebApi()
+    .AddCommon()
+    .AddApplication()
+    .AddExternal(builder.Configuration)
+    .AddPersistence(builder.Configuration);
 
 var app = builder.Build();
 

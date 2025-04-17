@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>false</InvariantGlobalization>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../../common/Consultoria.Inversion.Common/Consultoria.Inversion.Common.csproj" />
+    <ProjectReference Include="../../core/Consultoria.Inversion.Application/Consultoria.Inversion.Application.csproj" />
+    <ProjectReference Include="../../infrastructure/Consultoria.Inversion.External/Consultoria.Inversion.External.csproj" />
     <ProjectReference Include="../../infrastructure/Consultoria.Inversion.Persistence/Consultoria.Inversion.Persistence.csproj" />
   </ItemGroup>
 
