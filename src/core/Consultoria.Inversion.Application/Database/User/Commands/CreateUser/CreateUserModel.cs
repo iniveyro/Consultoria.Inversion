@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Consultoria.Inversion.Domain.Enums;
 
-namespace Consultoria.Inversion.Application.Database.User.Commands
+namespace Consultoria.Inversion.Application.Database.User.Commands.CreateUser
 {
     public class CreateUserModel
     {
@@ -11,5 +8,6 @@ namespace Consultoria.Inversion.Application.Database.User.Commands
         public required string Email {get;set;}
         public required string Password {get;set;}
         public int DNI {get;set;}
+        public TipoPersona Tipo {get;set;}
     }
 }

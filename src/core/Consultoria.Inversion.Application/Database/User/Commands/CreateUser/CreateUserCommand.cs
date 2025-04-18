@@ -1,7 +1,7 @@
 using AutoMapper;
 using Consultoria.Inversion.Domain.Models;
 
-namespace Consultoria.Inversion.Application.Database.User.Commands
+namespace Consultoria.Inversion.Application.Database.User.Commands.CreateUser
 {
     public class CreateUserCommand : ICreateUserCommand
     {

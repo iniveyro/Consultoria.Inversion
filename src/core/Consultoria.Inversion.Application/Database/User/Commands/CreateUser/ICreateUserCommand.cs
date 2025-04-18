@@ -1,4 +1,4 @@
-namespace Consultoria.Inversion.Application.Database.User.Commands
+namespace Consultoria.Inversion.Application.Database.User.Commands.CreateUser
 {
     public interface ICreateUserCommand
     {
