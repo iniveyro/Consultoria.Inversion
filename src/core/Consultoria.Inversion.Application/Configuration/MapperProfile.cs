@@ -1,8 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
+using Consultoria.Inversion.Application.Database.User.Commands;
+using Consultoria.Inversion.Domain.Models;
 
 namespace Consultoria.Inversion.Application.Configuration
 {
@@ -10,7 +8,7 @@ namespace Consultoria.Inversion.Application.Configuration
     {
         public MapperProfile()
         {
-            
+            CreateMap<UserModel, CreateUserModel>().ReverseMap();
         }
     }
 }

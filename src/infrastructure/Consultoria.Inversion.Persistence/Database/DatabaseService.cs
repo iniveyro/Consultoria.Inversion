@@ -1,7 +1,7 @@
 using Consultoria.Inversion.Domain.Models;
 using Consultoria.Inversion.Persistence.Configuration;
 using Microsoft.EntityFrameworkCore;
-using Consultoria.Inversion.Application.Interfaces;
+using Consultoria.Inversion.Application.Database;
 
 namespace Consultoria.Inversion.Persistence.Database
 {

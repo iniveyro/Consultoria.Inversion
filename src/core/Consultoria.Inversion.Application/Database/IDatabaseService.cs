@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Consultoria.Inversion.Domain.Models;
 
-namespace Consultoria.Inversion.Application.Interfaces
+namespace Consultoria.Inversion.Application.Database
 {
     public interface IDatabaseService
     {

@@ -1,4 +1,4 @@
-using Consultoria.Inversion.Application.Interfaces;
+using Consultoria.Inversion.Application.Database;
 using Consultoria.Inversion.Persistence.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
