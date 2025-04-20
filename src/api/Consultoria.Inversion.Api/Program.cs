@@ -3,6 +3,8 @@ using Consultoria.Inversion.Api;
 using Consultoria.Inversion.Common;
 using Consultoria.Inversion.Application;
 using Consultoria.Inversion.External;
+using Consultoria.Inversion.Application.Database.User.Commands.CreateUser;
+using Consultoria.Inversion.Application.Database.User.Commands.UpdateUser;
 
 var builder = WebApplication.CreateBuilder(args);
 
