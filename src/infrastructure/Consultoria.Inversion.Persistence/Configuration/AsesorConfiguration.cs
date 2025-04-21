@@ -8,7 +8,7 @@ namespace Consultoria.Inversion.Persistence.Configuration
         public AsesorConfiguration(EntityTypeBuilder<AsesorModel> entityBuilder)
         {
             entityBuilder.HasKey(x=>x.AsesorId);
-            entityBuilder.Property(x=>x.Certificacion).IsRequired();
+            entityBuilder.Property(x=>x.Certificacion);
             entityBuilder.Property(x=>x.DNI).IsRequired();
             entityBuilder.Property(x=>x.Email).IsRequired();
             entityBuilder.Property(x=>x.NombApe).IsRequired();
