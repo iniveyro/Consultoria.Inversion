@@ -1,4 +1,3 @@
-using Consultoria.Inversion.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace Consultoria.Inversion.Application.Database.Inversion.Queries.GetInversionByTipo
@@ -12,7 +11,7 @@ namespace Consultoria.Inversion.Application.Database.Inversion.Queries.GetInvers
             _databaseService = databaseService;
         }
 
-        public async Task<List<GetInversionByTipoModel>> Execute(TipoInversion TipoInversion)
+        public async Task<List<GetInversionByTipoModel>> Execute(string TipoInversion)
         {
             var result = await (
                 from Inversiones in _databaseService.Inversion

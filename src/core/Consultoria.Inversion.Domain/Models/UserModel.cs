@@ -1,5 +1,3 @@
-using Consultoria.Inversion.Domain.Enums;
-
 namespace Consultoria.Inversion.Domain.Models
 {
     public class UserModel
@@ -9,7 +7,7 @@ namespace Consultoria.Inversion.Domain.Models
         public required string Email {get;set;}
         public required string Password {get;set;}
         public int DNI {get;set;}
-        public TipoPersona Tipo {get;set;}
+        public int Tipo {get;set;} //Enum
         public DateOnly FechaRegistro {get;set;} 
         //Clave Foraneas
         public int AsesorId {get;set;}
