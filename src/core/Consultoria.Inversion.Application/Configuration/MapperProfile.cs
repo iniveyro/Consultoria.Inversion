@@ -7,6 +7,7 @@ using Consultoria.Inversion.Application.Database.User.Queries.GetUserById;
 using Consultoria.Inversion.Application.Database.User.Queries.GetUserByEmailAndPass;
 using Consultoria.Inversion.Application.Database.Asesor.Commands.CreateAsesor;
 using Consultoria.Inversion.Application.Database.Asesor.Queries.GetAsesorById;
+using Consultoria.Inversion.Application.Database.Inversion.Commands.CreateInversion;
 
 namespace Consultoria.Inversion.Application.Configuration
 {
@@ -26,6 +27,9 @@ namespace Consultoria.Inversion.Application.Configuration
             CreateMap<AsesorModel, UpdateUserModel>().ReverseMap();
             CreateMap<AsesorModel, GetAllUsersModel>().ReverseMap();
             CreateMap<AsesorModel, GetAsesorByIdModel>().ReverseMap();
+            #endregion
+            #region Inversiones
+            CreateMap<InversionModel, CreateInversionModel>().ReverseMap();
             #endregion
         }
     }

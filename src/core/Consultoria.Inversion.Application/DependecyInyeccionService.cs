@@ -14,6 +14,10 @@ using Consultoria.Inversion.Application.Database.Asesor.Commands.DeleteAsesor;
 using Consultoria.Inversion.Application.Database.Asesor.Queries.GetAllAsesores;
 using Consultoria.Inversion.Application.Database.Asesor.Queries.GetAsesorById;
 using Consultoria.Inversion.Application.Database.Asesor.Queries.GetAsesorByDNI;
+using Consultoria.Inversion.Application.Database.Inversion.Commands.CreateInversion;
+using Consultoria.Inversion.Application.Database.Inversion.Queries.GetAllInversiones;
+using Consultoria.Inversion.Application.Database.Inversion.Queries.GetInversionByDNI;
+using Consultoria.Inversion.Application.Database.Inversion.Queries.GetInversionByTipo;
 
 namespace Consultoria.Inversion.Application
 {
@@ -39,6 +43,13 @@ namespace Consultoria.Inversion.Application
             services.AddTransient<IGetAllAsesoresQuery, GetAllAsesoresQuery>();
             services.AddTransient<IGetAsesorByIdQuery, GetAsesorByIdQuery>();
             services.AddTransient<IGetAsesorByDNIQuery, GetAsesorByDNIQuery>();
+            #endregion
+            #region Inversiones
+            services.AddTransient<ICreateInversionCommand, CreateInversionCommand>();
+            services.AddTransient<IGetAllInversionesQuery, GetAllInversionesQuery>();
+            services.AddTransient<ICreateInversionCommand, CreateInversionCommand>();
+            services.AddTransient<IGetInversionByDNIQuery, GetInversionByDNIQuery>();
+            services.AddTransient<IGetInversionByTipoQuery, GetInversionByTipoQuery>();
             #endregion
             return services;
         }
