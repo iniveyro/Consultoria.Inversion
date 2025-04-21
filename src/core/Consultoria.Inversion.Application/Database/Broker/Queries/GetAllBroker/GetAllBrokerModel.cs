@@ -1,8 +1,8 @@
-namespace Consultoria.Inversion.Application.Database.Asesor.Commands.UpdateAsesor
+namespace Consultoria.Inversion.Application.Database.Broker.Queries.GetAllBroker
 {
-    public class UpdateAsesorModel
+    public class GetAllBrokersModel
     {
-        public int AsesorId {get;set;}
+        public int BrokerId {get;set;}
         public required string NombApe {get;set;}
         public int DNI {get;set;}
         public required string Certificacion {get;set;}

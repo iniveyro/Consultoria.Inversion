@@ -13,7 +13,7 @@ namespace Consultoria.Inversion.Application.Database.Inversion.Queries.GetAllInv
         {
             var result = await (
                 from Inversiones in _databaseService.Inversion
-                join Asesor in _databaseService.Asesor on Inversiones.AsesorId equals Asesor.AsesorId
+                join Broker in _databaseService.Broker on Inversiones.BrokerId equals Broker.BrokerId
                 join User in _databaseService.User on Inversiones.UserId equals User.UserId
                 select new GetAllInversionesModel
                 {
@@ -26,7 +26,7 @@ namespace Consultoria.Inversion.Application.Database.Inversion.Queries.GetAllInv
                     Estado = Inversiones.Estado,
                     Rendimiento = Inversiones.Rendimiento,
                     Tipo = Inversiones.Tipo,
-                    AsesorNomb=Asesor.NombApe,
+                    BrokerNomb=Broker.NombApe,
                     UserName=User.NombApe
                 }
             ).ToListAsync();

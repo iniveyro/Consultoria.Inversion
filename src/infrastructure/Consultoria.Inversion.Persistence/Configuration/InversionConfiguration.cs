@@ -17,14 +17,14 @@ namespace Consultoria.Inversion.Persistence.Configuration
             entityBuilder.Property(x=>x.Rendimiento).IsRequired();
             entityBuilder.Property(x=>x.Tipo).IsRequired();
             //Claves foraneas
-            entityBuilder.Property(x=>x.AsesorId).IsRequired();
+            entityBuilder.Property(x=>x.BrokerId).IsRequired();
             entityBuilder.Property(x=>x.UserId).IsRequired();
             entityBuilder.HasOne(x=>x.User)
                 .WithMany(x=>x.Inversiones)
                 .HasForeignKey(x=>x.UserId);
-            entityBuilder.HasOne(x=>x.Asesor)
+            entityBuilder.HasOne(x=>x.Broker)
                 .WithMany(x=>x.Inversiones)
-                .HasForeignKey(x=>x.AsesorId);
+                .HasForeignKey(x=>x.BrokerId);
         }
     }
 }

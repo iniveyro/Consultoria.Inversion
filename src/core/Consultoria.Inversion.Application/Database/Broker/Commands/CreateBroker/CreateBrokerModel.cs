@@ -1,6 +1,6 @@
-namespace Consultoria.Inversion.Application.Database.Asesor.Commands.CreateAsesor
+namespace Consultoria.Inversion.Application.Database.Broker.Commands.CreateBroker
 {
-    public class CreateAsesorModel
+    public class CreateBrokerModel
     {
         public required string NombApe {get;set;}
         public int DNI {get;set;}

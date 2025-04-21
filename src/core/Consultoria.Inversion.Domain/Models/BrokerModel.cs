@@ -1,8 +1,8 @@
 namespace Consultoria.Inversion.Domain.Models
 {
-    public class AsesorModel
+    public class BrokerModel
     {
-        public int AsesorId {get;set;}
+        public int BrokerId {get;set;}
         public required string NombApe {get;set;}
         public int DNI {get;set;}
         public string? Certificacion {get;set;} //Enum

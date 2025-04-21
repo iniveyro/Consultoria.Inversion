@@ -11,7 +11,7 @@ namespace Consultoria.Inversion.Application.Database.Inversion.Queries.GetAllInv
         public required string Moneda {get; set;}
         public required string Estado {get; set;}
         public int Rendimiento {get; set;}
-        public required string AsesorNomb {get;set;}
+        public required string BrokerNomb {get;set;}
         public required string UserName {get;set;}
     }
 }

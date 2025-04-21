@@ -13,7 +13,7 @@ public class InversionModel
     public int Rendimiento {get; set;}
     //Claves Foraneas
     public int UserId {get;set;}
-    public int AsesorId {get;set;}
+    public int BrokerId {get;set;}
     public UserModel User {get;set;}
-    public AsesorModel Asesor {get;set;}
+    public BrokerModel Broker {get;set;}
 }

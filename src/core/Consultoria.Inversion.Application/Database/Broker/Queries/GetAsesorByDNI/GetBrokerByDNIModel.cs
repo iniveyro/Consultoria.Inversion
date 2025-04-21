@@ -1,6 +1,6 @@
-namespace Consultoria.Inversion.Application.Database.Asesor.Queries.GetAsesorByDNI
+namespace Consultoria.Inversion.Application.Database.Broker.Queries.GetBrokerByDNI
 {
-    public class GetAsesorByDNIModel
+    public class GetBrokerByDNIModel
     {
         public required string NombApe {get;set;}
         public int DNI {get;set;}

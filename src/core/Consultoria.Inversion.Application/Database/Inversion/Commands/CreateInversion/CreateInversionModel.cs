@@ -11,6 +11,6 @@ namespace Consultoria.Inversion.Application.Database.Inversion.Commands.CreateIn
     public required string Estado {get; set;}
     public int Rendimiento {get; set;}
     public int UserId {get;set;}
-    public int AsesorId {get;set;}
+    public int BrokerId {get;set;}
     }
 }

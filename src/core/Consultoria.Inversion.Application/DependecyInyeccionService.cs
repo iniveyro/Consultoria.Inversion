@@ -8,12 +8,12 @@ using Consultoria.Inversion.Application.Database.User.Commands.UpdateUserPasswor
 using Consultoria.Inversion.Application.Database.User.Queries.GetAllUsers;
 using Consultoria.Inversion.Application.Database.User.Queries.GetUserById;
 using Consultoria.Inversion.Application.Database.User.Queries.GetUserByEmailAndPass;
-using Consultoria.Inversion.Application.Database.Asesor.Commands.CreateAsesor;
-using Consultoria.Inversion.Application.Database.Asesor.Commands.UpdateAsesor;
-using Consultoria.Inversion.Application.Database.Asesor.Commands.DeleteAsesor;
-using Consultoria.Inversion.Application.Database.Asesor.Queries.GetAllAsesores;
-using Consultoria.Inversion.Application.Database.Asesor.Queries.GetAsesorById;
-using Consultoria.Inversion.Application.Database.Asesor.Queries.GetAsesorByDNI;
+using Consultoria.Inversion.Application.Database.Broker.Commands.CreateBroker;
+using Consultoria.Inversion.Application.Database.Broker.Commands.UpdateBroker;
+using Consultoria.Inversion.Application.Database.Broker.Commands.DeleteBroker;
+using Consultoria.Inversion.Application.Database.Broker.Queries.GetAllBroker;
+using Consultoria.Inversion.Application.Database.Broker.Queries.GetBrokerById;
+using Consultoria.Inversion.Application.Database.Broker.Queries.GetBrokerByDNI;
 using Consultoria.Inversion.Application.Database.Inversion.Commands.CreateInversion;
 using Consultoria.Inversion.Application.Database.Inversion.Queries.GetAllInversiones;
 using Consultoria.Inversion.Application.Database.Inversion.Queries.GetInversionByDNI;
@@ -36,13 +36,13 @@ namespace Consultoria.Inversion.Application
             services.AddTransient<IGetUserByIdQuery, GetUserByIdQuery>();
             services.AddTransient<IGetUserByEmailAndPassQuery, GetUserByEmailAndPassQuery>();
             #endregion
-            #region AsesorServices
-            services.AddTransient<ICreateAsesorCommand, CreateAsesorCommand>();
-            services.AddTransient<IUpdateAsesorCommand, UpdateAsesorCommand>();
-            services.AddTransient<IDeleteAsesorCommand, DeleteAsesorCommand>();
-            services.AddTransient<IGetAllAsesoresQuery, GetAllAsesoresQuery>();
-            services.AddTransient<IGetAsesorByIdQuery, GetAsesorByIdQuery>();
-            services.AddTransient<IGetAsesorByDNIQuery, GetAsesorByDNIQuery>();
+            #region BrokerServices
+            services.AddTransient<ICreateBrokerCommand, CreateBrokerCommand>();
+            services.AddTransient<IUpdateBrokerCommand, UpdateBrokerCommand>();
+            services.AddTransient<IDeleteBrokerCommand, DeleteBrokerCommand>();
+            services.AddTransient<IGetAllBrokersQuery, GetAllBrokersQuery>();
+            services.AddTransient<IGetBrokerByIdQuery, GetBrokerByIdQuery>();
+            services.AddTransient<IGetBrokerByDNIQuery, GetBrokerByDNIQuery>();
             #endregion
             #region Inversiones
             services.AddTransient<ICreateInversionCommand, CreateInversionCommand>();

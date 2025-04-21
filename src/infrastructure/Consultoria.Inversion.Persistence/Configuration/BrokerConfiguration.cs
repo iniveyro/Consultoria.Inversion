@@ -3,18 +3,18 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Consultoria.Inversion.Persistence.Configuration
 {
-    public class AsesorConfiguration
+    public class BrokerConfiguration
     {
-        public AsesorConfiguration(EntityTypeBuilder<AsesorModel> entityBuilder)
+        public BrokerConfiguration(EntityTypeBuilder<BrokerModel> entityBuilder)
         {
-            entityBuilder.HasKey(x=>x.AsesorId);
+            entityBuilder.HasKey(x=>x.BrokerId);
             entityBuilder.Property(x=>x.Certificacion);
             entityBuilder.Property(x=>x.DNI).IsRequired();
             entityBuilder.Property(x=>x.Email).IsRequired();
             entityBuilder.Property(x=>x.NombApe).IsRequired();
             entityBuilder.HasMany(x=>x.Inversiones)
-            .WithOne(x=>x.Asesor)
-            .HasForeignKey(x=>x.AsesorId);   
+            .WithOne(x=>x.Broker)
+            .HasForeignKey(x=>x.BrokerId);   
         }
     }
 }

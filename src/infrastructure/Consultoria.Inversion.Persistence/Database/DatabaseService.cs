@@ -12,7 +12,7 @@ namespace Consultoria.Inversion.Persistence.Database
 
         }
         public DbSet<UserModel> User {get;set;}
-        public DbSet<AsesorModel> Asesor {get;set;}
+        public DbSet<BrokerModel> Broker {get;set;}
         public DbSet<InversionModel> Inversion {get;set;}
         public async Task<bool> SaveAsync()
         {
@@ -26,7 +26,7 @@ namespace Consultoria.Inversion.Persistence.Database
         private void EntityConfiguration (ModelBuilder modelBuilder)
         {
             new UserConfiguration(modelBuilder.Entity<UserModel>());
-            new AsesorConfiguration(modelBuilder.Entity<AsesorModel>());
+            new BrokerConfiguration(modelBuilder.Entity<BrokerModel>());
             new InversionConfiguration(modelBuilder.Entity<InversionModel>());
         }
     

@@ -10,8 +10,8 @@ namespace Consultoria.Inversion.Domain.Models
         public int Tipo {get;set;} //Enum
         public DateOnly FechaRegistro {get;set;} 
         //Clave Foraneas
-        public int AsesorId {get;set;}
-        public AsesorModel Asesor {get;set;}
+        public int BrokerId {get;set;}
+        public BrokerModel Broker {get;set;}
         public ICollection<InversionModel> Inversiones {get;set;}
     }
 }
