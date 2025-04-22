@@ -1,10 +1,10 @@
 using Consultoria.Inversion.Domain.Models;
 
-namespace Consultoria.Inversion.Api.Features
+namespace Consultoria.Inversion.Application.Features
 {
     public static class ResponseApiService
     {
-        public static BaseRequestModel Response (int StatusCode, object Data = null, string Message = null)
+        public static BaseRequestModel Response (int StatusCode, object? Data = null, string? Message = null)
         {
             bool Success = false;
             if (StatusCode >= 200 && StatusCode < 300)
