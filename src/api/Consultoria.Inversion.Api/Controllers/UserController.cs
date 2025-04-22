@@ -1,6 +1,8 @@
 using Consultoria.Inversion.Application.Features;
 using Microsoft.AspNetCore.Mvc;
 using Consultoria.Inversion.Application.Exceptions;
+using Consultoria.Inversion.Application.Database.User;
+using Consultoria.Inversion.Application.Database.User.Commands.CreateUser;
 
 namespace Consultoria.Inversion.Api.Controllers
 {
@@ -14,11 +16,11 @@ namespace Consultoria.Inversion.Api.Controllers
             
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Test()
+        [HttpPost("create")]
+        public async Task<IActionResult> Create([FromBody] CreateUserModel model, [FromServices] ICreateUserCommand createUserCommand)
         {
-            var number = int.Parse("asdasd");
-            return StatusCode(StatusCodes.Status200OK, ResponseApiService.Response(StatusCodes.Status200OK,"{}","Se ejecuto correctamente"));
-        }        
+            var data = await createUserCommand.Execute(model);
+            return StatusCode(StatusCodes.Status201Created, ResponseApiService.Response(StatusCodes.Status201Created,model,"User se creo correctamente"));
+        }
     }
 }

@@ -6,6 +6,9 @@ namespace Consultoria.Inversion.Application.Database.User.Commands.CreateUser
         public required string Email {get;set;}
         public required string Password {get;set;}
         public int DNI {get;set;}
+        public required string Tipo {get;set;}
+        public DateOnly FechaRegistro {get;set;}
         public int BrokerId {get;set;}
+ 
     }
 }

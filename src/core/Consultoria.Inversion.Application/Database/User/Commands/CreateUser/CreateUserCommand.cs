@@ -1,5 +1,7 @@
 using AutoMapper;
+using static System.Console;
 using Consultoria.Inversion.Domain.Models;
+using Consultoria.Inversion.Domain.Enums;
 
 namespace Consultoria.Inversion.Application.Database.User.Commands.CreateUser
 {
@@ -16,6 +18,7 @@ namespace Consultoria.Inversion.Application.Database.User.Commands.CreateUser
         public async Task<CreateUserModel> Execute(CreateUserModel model)
         {
             var user = _mapper.Map<UserModel>(model);
+            user.FechaRegistro = DateOnly.FromDateTime(DateTime.Now);
             await _databaseService.User.AddAsync(user);
             await _databaseService.SaveAsync();
             return model;

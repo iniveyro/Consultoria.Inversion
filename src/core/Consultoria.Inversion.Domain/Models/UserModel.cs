@@ -7,7 +7,7 @@ namespace Consultoria.Inversion.Domain.Models
         public required string Email {get;set;}
         public required string Password {get;set;}
         public int DNI {get;set;}
-        public int Tipo {get;set;} //Enum
+        public required string Tipo {get;set;}
         public DateOnly FechaRegistro {get;set;} 
         //Clave Foraneas
         public int BrokerId {get;set;}
