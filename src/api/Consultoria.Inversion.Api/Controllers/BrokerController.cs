@@ -61,12 +61,12 @@ namespace Consultoria.Inversion.Api.Controllers
             return StatusCode(StatusCodes.Status200OK,ResponseApiService.Response(StatusCodes.Status200OK,data));
         }
 
-        [HttpGet("get-by-id/{id}")]
-        public async Task<IActionResult> GetById(int id, [FromServices] IGetBrokerByIdQuery getBrokerById)
+        [HttpGet("get-by-id/{BrokerId}")]
+        public async Task<IActionResult> GetById(int BrokerId, [FromServices] IGetBrokerByIdQuery getBrokerById)
         {
-            if (id<=0)
+            if (BrokerId<=0)
                 return StatusCode(StatusCodes.Status400BadRequest,ResponseApiService.Response(StatusCodes.Status400BadRequest));
-            var data = await getBrokerById.Execute(id);
+            var data = await getBrokerById.Execute(BrokerId);
             if (data == null)
                 return StatusCode(StatusCodes.Status404NotFound,ResponseApiService.Response(StatusCodes.Status404NotFound));
             return StatusCode(StatusCodes.Status200OK,ResponseApiService.Response(StatusCodes.Status200OK,data));
