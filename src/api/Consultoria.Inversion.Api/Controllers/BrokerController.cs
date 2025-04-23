@@ -1,14 +1,75 @@
+using Consultoria.Inversion.Application.Database.Broker.Commands.CreateBroker;
+using Consultoria.Inversion.Application.Database.Broker.Commands.DeleteBroker;
+using Consultoria.Inversion.Application.Database.Broker.Commands.UpdateBroker;
+using Consultoria.Inversion.Application.Database.Broker.Queries.GetAllBroker;
+using Consultoria.Inversion.Application.Database.Broker.Queries.GetBrokerByDNI;
+using Consultoria.Inversion.Application.Database.Broker.Queries.GetBrokerById;
+using Consultoria.Inversion.Application.Exceptions;
+using Consultoria.Inversion.Application.Features;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Consultoria.Inversion.Api.Controllers
 {
     [ApiController]
     [Route("api/v1/broker")]
+    [TypeFilter(typeof(ExcepctionManager))]
     public class BrokerController : ControllerBase
     {
-        public BrokerController()
+        [HttpPost("create")]
+        public async Task<IActionResult> Create([FromBody] CreateBrokerModel model, [FromServices] ICreateBrokerCommand createBrokerCommand)
         {
-            
+            var data = await createBrokerCommand.Execute(model);
+            return StatusCode(StatusCodes.Status201Created, ResponseApiService.Response(StatusCodes.Status201Created,data,"Broker se creo correctamente"));
+        }
+
+        [HttpPut("update")]
+        public async Task<IActionResult> Update([FromBody] UpdateBrokerModel model, [FromServices]IUpdateBrokerCommand updateBrokerCommand)
+        {
+            var data = await updateBrokerCommand.Execute(model);
+            return StatusCode(StatusCodes.Status200OK, ResponseApiService.Response(StatusCodes.Status200OK,data,"Broker se actualizo correctamente"));
+        }
+
+        [HttpDelete("delete/{BrokerID}")]
+        public async Task<IActionResult> Delete(int BrokerID, [FromServices] IDeleteBrokerCommand deleteBrokerCommand)
+        {
+            if (BrokerID <= 0)
+                return StatusCode(StatusCodes.Status400BadRequest,ResponseApiService.Response(StatusCodes.Status400BadRequest));
+            var data = await deleteBrokerCommand.Execute(BrokerID);
+            if (!data)
+                return StatusCode(StatusCodes.Status404NotFound,ResponseApiService.Response(StatusCodes.Status404NotFound));
+
+            return StatusCode(StatusCodes.Status200OK,ResponseApiService.Response(StatusCodes.Status200OK,data,"Broker se elimino correctamente"));
+        }
+
+        [HttpGet("get-all")]
+        public async Task<IActionResult> GetAll([FromServices] IGetAllBrokersQuery getAllBrokersQuery)
+        {
+            var data = await getAllBrokersQuery.Execute();
+            if (data == null)
+                return StatusCode(StatusCodes.Status404NotFound,ResponseApiService.Response(StatusCodes.Status404NotFound));
+            return StatusCode(StatusCodes.Status200OK,ResponseApiService.Response(StatusCodes.Status200OK,data));
+        }
+
+        [HttpGet("get-by-dni/{DNI}")]
+        public async Task<IActionResult> GetByDNI(int DNI, [FromServices] IGetBrokerByDNIQuery getBrokerByDNIQuery)
+        {
+            if (DNI<=0)
+                return StatusCode(StatusCodes.Status400BadRequest,ResponseApiService.Response(StatusCodes.Status400BadRequest));
+            var data = await getBrokerByDNIQuery.Execute(DNI);
+            if (data == null)
+                return StatusCode(StatusCodes.Status404NotFound,ResponseApiService.Response(StatusCodes.Status404NotFound));
+            return StatusCode(StatusCodes.Status200OK,ResponseApiService.Response(StatusCodes.Status200OK,data));
+        }
+
+        [HttpGet("get-by-id/{id}")]
+        public async Task<IActionResult> GetById(int id, [FromServices] IGetBrokerByIdQuery getBrokerById)
+        {
+            if (id<=0)
+                return StatusCode(StatusCodes.Status400BadRequest,ResponseApiService.Response(StatusCodes.Status400BadRequest));
+            var data = await getBrokerById.Execute(id);
+            if (data == null)
+                return StatusCode(StatusCodes.Status404NotFound,ResponseApiService.Response(StatusCodes.Status404NotFound));
+            return StatusCode(StatusCodes.Status200OK,ResponseApiService.Response(StatusCodes.Status200OK,data));
         }
     }
 }

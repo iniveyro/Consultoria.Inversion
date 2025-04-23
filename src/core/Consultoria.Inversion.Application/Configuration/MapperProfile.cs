@@ -10,6 +10,7 @@ using Consultoria.Inversion.Application.Database.Broker.Queries.GetBrokerById;
 using Consultoria.Inversion.Application.Database.Inversion.Commands.CreateInversion;
 using Consultoria.Inversion.Application.Database.Broker.Commands.CreateBroker;
 using Consultoria.Inversion.Application.Database.Broker.Queries.GetAllBroker;
+using Consultoria.Inversion.Application.Database.Broker.Queries.GetBrokerByDNI;
 
 namespace Consultoria.Inversion.Application.Configuration
 {
@@ -29,6 +30,7 @@ namespace Consultoria.Inversion.Application.Configuration
             CreateMap<BrokerModel, UpdateBrokerModel>().ReverseMap();
             CreateMap<BrokerModel, GetAllBrokersModel>().ReverseMap();
             CreateMap<BrokerModel, GetBrokerByIdModel>().ReverseMap();
+            CreateMap<BrokerModel, GetBrokerByDNIModel>().ReverseMap();
             #endregion
             #region Inversiones
             CreateMap<InversionModel, CreateInversionModel>().ReverseMap();
