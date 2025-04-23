@@ -5,6 +5,8 @@ using Consultoria.Inversion.Application.Database.User;
 using Consultoria.Inversion.Application.Database.User.Commands.CreateUser;
 using Consultoria.Inversion.Application.Database.User.Commands.UpdateUser;
 using Consultoria.Inversion.Application.Database.User.Commands.UpdateUserPassword;
+using Consultoria.Inversion.Application.Database.Broker.Commands.DeleteBroker;
+using Consultoria.Inversion.Application.Database.User.Commands.DeleteUser;
 
 namespace Consultoria.Inversion.Api.Controllers
 {
@@ -37,6 +39,19 @@ namespace Consultoria.Inversion.Api.Controllers
         {
             var data = await updateUserPasswordCommand.Execute(model);
             return StatusCode(StatusCodes.Status200OK, ResponseApiService.Response(StatusCodes.Status200OK,data,"Password de User se actualizo correctamente"));
+        }
+        [HttpDelete("delete/{UserId}")]
+        public async Task<IActionResult> Delete([FromServices] IDeleteUserCommand deleteUserCommand, int UserId)
+        {
+            if (UserId <= 0)
+                return StatusCode(StatusCodes.Status400BadRequest,ResponseApiService.Response(StatusCodes.Status400BadRequest));
+            
+            var data = await deleteUserCommand.Execute(UserId);
+            
+            if (!data)
+                return StatusCode(StatusCodes.Status204NoContent,ResponseApiService.Response(StatusCodes.Status204NoContent));
+
+            return StatusCode(StatusCodes.Status200OK,ResponseApiService.Response(StatusCodes.Status200OK,data,"User se elimino correctamente"));
         }
     }
 }
