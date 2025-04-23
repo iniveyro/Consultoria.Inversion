@@ -17,11 +17,9 @@ namespace Consultoria.Inversion.Application.Database.User.Commands.UpdateUserPas
             if (user == null)
                 return false;
 
-            model.Password=user.Password;
-            //_databaseService.User.Update(user);
+            user.Password=model.Password;
+            _databaseService.User.Update(user);
             return await _databaseService.SaveAsync();
-
         }
-
     }
 }
