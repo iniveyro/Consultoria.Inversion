@@ -8,6 +8,5 @@ namespace Consultoria.Inversion.Domain.Models
         public string? Certificacion {get;set;} //Enum
         public required string Email {get;set;}
         public ICollection<InversionModel> Inversiones {get;set;}
-        public ICollection<UserModel> Usuarios {get;set;}
     }
 }

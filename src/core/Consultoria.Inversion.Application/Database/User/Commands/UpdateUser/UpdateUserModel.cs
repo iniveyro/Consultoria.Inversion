@@ -8,6 +8,5 @@ namespace Consultoria.Inversion.Application.Database.User.Commands.UpdateUser
         public string Password {get;set;}
         public int DNI {get;set;}
         public string Tipo {get;set;}
-        public int BrokerId {get;set;}
     }
 }

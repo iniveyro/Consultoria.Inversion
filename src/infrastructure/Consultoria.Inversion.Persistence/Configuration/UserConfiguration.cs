@@ -16,12 +16,8 @@ public class UserConfiguration
         entityBuilder.Property(x => x.Password).IsRequired();
         entityBuilder.Property(x => x.Tipo).IsRequired();
         //Clave Foranea
-        entityBuilder.Property(x=>x.BrokerId).IsRequired();
         entityBuilder.HasMany(x=>x.Inversiones) // Un usuario puede tener muchas inversiones
             .WithOne(x=>x.User) // Esas inversiones tienen un unico usuario cada una
             .HasForeignKey(x=>x.UserId); // Clave foranea del usuario
-        entityBuilder.HasOne(x=>x.Broker) // Un usuario es Brokerado por un Broker
-            .WithMany(x=>x.Usuarios) // Ese Broker Brokera muchos usuarios
-            .HasForeignKey(x=>x.BrokerId); // Y cada usuario tiene un BrokerId como clave foranea
-    }
+        }
 }
