@@ -103,8 +103,6 @@ namespace Consultoria.Inversion.Api.Controllers
             var validate = await validator.ValidateAsync((email,password));
             if (!validate.IsValid)
                 return StatusCode(StatusCodes.Status400BadRequest, ResponseApiService.Response(StatusCodes.Status400BadRequest,validate.Errors));
-            if (email == null || password == null)
-                return StatusCode(StatusCodes.Status400BadRequest,ResponseApiService.Response(StatusCodes.Status400BadRequest));
             var data = await getUserByEmailAndPassQuery.Execute(email,password);
             if (data == null)
                 return StatusCode(StatusCodes.Status404NotFound,ResponseApiService.Response(StatusCodes.Status404NotFound));

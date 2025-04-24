@@ -4,6 +4,7 @@ using Consultoria.Inversion.Application.Database.Inversion.Queries.GetInversionB
 using Consultoria.Inversion.Application.Database.Inversion.Queries.GetInversionByTipo;
 using Consultoria.Inversion.Application.Exceptions;
 using Consultoria.Inversion.Application.Features;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Consultoria.Inversion.Api.Controllers
@@ -15,8 +16,14 @@ namespace Consultoria.Inversion.Api.Controllers
     public class InversionController : ControllerBase
     {
         [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody] CreateInversionModel model, [FromServices] ICreateInversionCommand createInversionCommand)
+        public async Task<IActionResult> Create(
+            [FromBody] CreateInversionModel model,
+            [FromServices] ICreateInversionCommand createInversionCommand,
+            [FromServices] IValidator<CreateInversionModel> validator)
         {
+            var validate = await validator.ValidateAsync(model);
+            if (!validate.IsValid)
+                return StatusCode(StatusCodes.Status400BadRequest, ResponseApiService.Response(StatusCodes.Status400BadRequest,validate.Errors));
             var data = await createInversionCommand.Execute(model);
             return StatusCode(StatusCodes.Status201Created, ResponseApiService.Response(StatusCodes.Status201Created,data,"Inversion se creo correctamente"));
         }
