@@ -18,6 +18,8 @@ using Consultoria.Inversion.Application.Database.Inversion.Commands.CreateInvers
 using Consultoria.Inversion.Application.Database.Inversion.Queries.GetAllInversiones;
 using Consultoria.Inversion.Application.Database.Inversion.Queries.GetInversionByDNI;
 using Consultoria.Inversion.Application.Database.Inversion.Queries.GetInversionByTipo;
+using FluentValidation;
+using Consultoria.Inversion.Application.Validators.User;
 
 namespace Consultoria.Inversion.Application
 {
@@ -50,6 +52,12 @@ namespace Consultoria.Inversion.Application
             services.AddTransient<ICreateInversionCommand, CreateInversionCommand>();
             services.AddTransient<IGetInversionByDNIQuery, GetInversionByDNIQuery>();
             services.AddTransient<IGetInversionByTipoQuery, GetInversionByTipoQuery>();
+            #endregion
+            #region Validator
+                services.AddScoped<IValidator<CreateUserModel>, CreateUserValidator>();
+                services.AddScoped<IValidator<UpdateUserModel>, UpdateUserValidator>();
+                services.AddScoped<IValidator<UpdateUserPasswordModel>, UpdateUserPasswordValidator>();
+                services.AddScoped<IValidator<(string,string)>, GetUserByEmailPasswordValidator>();
             #endregion
             return services;
         }
