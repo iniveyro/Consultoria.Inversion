@@ -22,7 +22,7 @@ namespace Consultoria.Inversion.Api.Controllers
         public async Task<IActionResult> Create(
             [FromBody] CreateUserModel model,
             [FromServices] ICreateUserCommand createUserCommand,
-            [FromServices] IValidator<CreateUserValidator> validator
+            [FromServices] IValidator<CreateUserModel> validator
             )
         {
             var validate = await validator.ValidateAsync(model);
@@ -36,7 +36,7 @@ namespace Consultoria.Inversion.Api.Controllers
         public async Task<IActionResult> Update(
             [FromBody] UpdateUserModel model, 
             [FromServices] IUpdateUserCommand updateUserCommand,
-            [FromServices] IValidator<UpdateUserValidator> validator
+            [FromServices] IValidator<UpdateUserModel> validator
             )
         {
             var validate = await validator.ValidateAsync(model);
@@ -50,7 +50,7 @@ namespace Consultoria.Inversion.Api.Controllers
         public async Task<IActionResult> UpdatePassword(
             [FromBody]UpdateUserPasswordModel model, 
             [FromServices] IUpdateUserPasswordCommand updateUserPasswordCommand,
-            [FromServices] IValidator<UpdateUserPasswordValidator> validator
+            [FromServices] IValidator<UpdateUserPasswordModel> validator
             )
         {
             var validate = await validator.ValidateAsync(model);

@@ -12,6 +12,6 @@ namespace Consultoria.Inversion.Application.Validators.User
             RuleFor(x=>x.Password).NotNull().NotEmpty().MinimumLength(8).MaximumLength(10);
             RuleFor(x=>x.Email).NotNull().NotEmpty().EmailAddress();
             RuleFor(x=>x.Tipo).NotNull().NotEmpty();
-            }
+        }
     }
 }
