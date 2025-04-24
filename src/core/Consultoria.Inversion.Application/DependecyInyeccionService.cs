@@ -20,6 +20,7 @@ using Consultoria.Inversion.Application.Database.Inversion.Queries.GetInversionB
 using Consultoria.Inversion.Application.Database.Inversion.Queries.GetInversionByTipo;
 using FluentValidation;
 using Consultoria.Inversion.Application.Validators.User;
+using Consultoria.Inversion.Application.Validators.Broker;
 
 namespace Consultoria.Inversion.Application
 {
@@ -58,6 +59,8 @@ namespace Consultoria.Inversion.Application
                 services.AddScoped<IValidator<UpdateUserModel>, UpdateUserValidator>();
                 services.AddScoped<IValidator<UpdateUserPasswordModel>, UpdateUserPasswordValidator>();
                 services.AddScoped<IValidator<(string,string)>, GetUserByEmailPasswordValidator>();
+                services.AddScoped<IValidator<CreateBrokerModel>, CreateBrokerValidator>();
+                services.AddScoped<IValidator<UpdateBrokerModel>, UpdateBrokerValidator>();
             #endregion
             return services;
         }

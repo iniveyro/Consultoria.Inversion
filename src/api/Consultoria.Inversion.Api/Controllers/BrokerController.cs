@@ -6,6 +6,7 @@ using Consultoria.Inversion.Application.Database.Broker.Queries.GetBrokerByDNI;
 using Consultoria.Inversion.Application.Database.Broker.Queries.GetBrokerById;
 using Consultoria.Inversion.Application.Exceptions;
 using Consultoria.Inversion.Application.Features;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Consultoria.Inversion.Api.Controllers
@@ -16,15 +17,29 @@ namespace Consultoria.Inversion.Api.Controllers
     public class BrokerController : ControllerBase
     {
         [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody] CreateBrokerModel model, [FromServices] ICreateBrokerCommand createBrokerCommand)
+        public async Task<IActionResult> Create(
+            [FromBody] CreateBrokerModel model, 
+            [FromServices] ICreateBrokerCommand createBrokerCommand,
+            [FromServices] IValidator<CreateBrokerModel> validator
+            )
         {
+            var validate = await validator.ValidateAsync(model);
+            if (!validate.IsValid)
+                return StatusCode(StatusCodes.Status400BadRequest, ResponseApiService.Response(StatusCodes.Status400BadRequest,validate.Errors));
             var data = await createBrokerCommand.Execute(model);
             return StatusCode(StatusCodes.Status201Created, ResponseApiService.Response(StatusCodes.Status201Created,data,"Broker se creo correctamente"));
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromBody] UpdateBrokerModel model, [FromServices]IUpdateBrokerCommand updateBrokerCommand)
+        public async Task<IActionResult> Update(
+            [FromBody] UpdateBrokerModel model, 
+            [FromServices] IUpdateBrokerCommand updateBrokerCommand,
+            [FromServices] IValidator<UpdateBrokerModel> validator
+            )
         {
+            var validate = await validator.ValidateAsync(model);
+            if (!validate.IsValid)
+                return StatusCode(StatusCodes.Status400BadRequest, ResponseApiService.Response(StatusCodes.Status400BadRequest,validate.Errors));
             var data = await updateBrokerCommand.Execute(model);
             return StatusCode(StatusCodes.Status200OK, ResponseApiService.Response(StatusCodes.Status200OK,data,"Broker se actualizo correctamente"));
         }

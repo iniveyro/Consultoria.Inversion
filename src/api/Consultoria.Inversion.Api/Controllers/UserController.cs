@@ -8,6 +8,8 @@ using Consultoria.Inversion.Application.Database.User.Commands.DeleteUser;
 using Consultoria.Inversion.Application.Database.User.Queries.GetAllUsers;
 using Consultoria.Inversion.Application.Database.User.Queries.GetUserByEmailAndPass;
 using Consultoria.Inversion.Application.Database.User.Queries.GetUserById;
+using FluentValidation;
+using Consultoria.Inversion.Application.Validators.User;
 
 namespace Consultoria.Inversion.Api.Controllers
 {
@@ -17,22 +19,43 @@ namespace Consultoria.Inversion.Api.Controllers
     public class UserController : ControllerBase
     {
         [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody] CreateUserModel model, [FromServices] ICreateUserCommand createUserCommand)
+        public async Task<IActionResult> Create(
+            [FromBody] CreateUserModel model,
+            [FromServices] ICreateUserCommand createUserCommand,
+            [FromServices] IValidator<CreateUserValidator> validator
+            )
         {
+            var validate = await validator.ValidateAsync(model);
+            if (!validate.IsValid)
+                return StatusCode(StatusCodes.Status400BadRequest, ResponseApiService.Response(StatusCodes.Status400BadRequest,validate.Errors));
             var data = await createUserCommand.Execute(model);
             return StatusCode(StatusCodes.Status201Created, ResponseApiService.Response(StatusCodes.Status201Created,data,"User se creo correctamente"));
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromBody]UpdateUserModel model, [FromServices]IUpdateUserCommand updateUserCommand)
+        public async Task<IActionResult> Update(
+            [FromBody] UpdateUserModel model, 
+            [FromServices] IUpdateUserCommand updateUserCommand,
+            [FromServices] IValidator<UpdateUserValidator> validator
+            )
         {
+            var validate = await validator.ValidateAsync(model);
+            if (!validate.IsValid)
+                return StatusCode(StatusCodes.Status400BadRequest, ResponseApiService.Response(StatusCodes.Status400BadRequest,validate.Errors));
             var data = await updateUserCommand.Execute(model);
             return StatusCode(StatusCodes.Status200OK, ResponseApiService.Response(StatusCodes.Status200OK,data,"User se actualizo correctamente"));
         }
 
         [HttpPut("updatepass")]
-        public async Task<IActionResult> UpdatePassword([FromBody]UpdateUserPasswordModel model, [FromServices] IUpdateUserPasswordCommand updateUserPasswordCommand)
+        public async Task<IActionResult> UpdatePassword(
+            [FromBody]UpdateUserPasswordModel model, 
+            [FromServices] IUpdateUserPasswordCommand updateUserPasswordCommand,
+            [FromServices] IValidator<UpdateUserPasswordValidator> validator
+            )
         {
+            var validate = await validator.ValidateAsync(model);
+            if (!validate.IsValid)
+                return StatusCode(StatusCodes.Status400BadRequest, ResponseApiService.Response(StatusCodes.Status400BadRequest,validate.Errors));
             var data = await updateUserPasswordCommand.Execute(model);
             return StatusCode(StatusCodes.Status200OK, ResponseApiService.Response(StatusCodes.Status200OK,data,"Password de User se actualizo correctamente"));
         }
@@ -71,8 +94,15 @@ namespace Consultoria.Inversion.Api.Controllers
         }
         
         [HttpGet("get-by-email-password/{email}/{password}")]
-        public async Task<IActionResult> GetUserEmailPassword(string email, string password,[FromServices] IGetUserByEmailAndPassQuery getUserByEmailAndPassQuery)
+        public async Task<IActionResult> GetUserEmailPassword(
+            string email, string password,
+            [FromServices] IGetUserByEmailAndPassQuery getUserByEmailAndPassQuery,
+            [FromServices] IValidator<(string, string)> validator
+            )
         {
+            var validate = await validator.ValidateAsync((email,password));
+            if (!validate.IsValid)
+                return StatusCode(StatusCodes.Status400BadRequest, ResponseApiService.Response(StatusCodes.Status400BadRequest,validate.Errors));
             if (email == null || password == null)
                 return StatusCode(StatusCodes.Status400BadRequest,ResponseApiService.Response(StatusCodes.Status400BadRequest));
             var data = await getUserByEmailAndPassQuery.Execute(email,password);
