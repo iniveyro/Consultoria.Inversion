@@ -31,10 +31,10 @@ namespace Consultoria.Inversion.Api.Controllers
         [HttpGet("get-all")]
         public async Task<IActionResult> GetAll([FromServices] IGetAllInversionesQuery getAllInversionesQuery)
         {
-            var data = getAllInversionesQuery.Execute();
+            var data = await getAllInversionesQuery.Execute();
             if (data == null)
                 return StatusCode(StatusCodes.Status404NotFound, ResponseApiService.Response(StatusCodes.Status404NotFound));
-            return StatusCode(StatusCodes.Status200OK, ResponseApiService.Response(StatusCodes.Status200OK));
+            return StatusCode(StatusCodes.Status200OK, ResponseApiService.Response(StatusCodes.Status200OK,data));
         }
 
         [HttpGet("get-by-dni")]

@@ -9,7 +9,6 @@ using Consultoria.Inversion.Application.Database.User.Queries.GetAllUsers;
 using Consultoria.Inversion.Application.Database.User.Queries.GetUserByEmailAndPass;
 using Consultoria.Inversion.Application.Database.User.Queries.GetUserById;
 using FluentValidation;
-using Consultoria.Inversion.Application.Validators.User;
 
 namespace Consultoria.Inversion.Api.Controllers
 {
