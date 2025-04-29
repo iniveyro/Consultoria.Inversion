@@ -9,9 +9,12 @@ using Consultoria.Inversion.Application.Database.User.Queries.GetAllUsers;
 using Consultoria.Inversion.Application.Database.User.Queries.GetUserByEmailAndPass;
 using Consultoria.Inversion.Application.Database.User.Queries.GetUserById;
 using FluentValidation;
+using Consultoria.Inversion.Application.External.GetTokenJWT;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Consultoria.Inversion.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/v1/user")]
     [TypeFilter(typeof(ExcepctionManager))]
@@ -92,19 +95,25 @@ namespace Consultoria.Inversion.Api.Controllers
             return StatusCode(StatusCodes.Status200OK,ResponseApiService.Response(StatusCodes.Status200OK,data));
         }
         
+        [AllowAnonymous]
         [HttpGet("get-by-email-password/{email}/{password}")]
         public async Task<IActionResult> GetUserEmailPassword(
             string email, string password,
             [FromServices] IGetUserByEmailAndPassQuery getUserByEmailAndPassQuery,
-            [FromServices] IValidator<(string, string)> validator
+            [FromServices] IValidator<(string, string)> validator,
+            [FromServices] IGetTokenJWTService getTokenJWT
             )
         {
             var validate = await validator.ValidateAsync((email,password));
             if (!validate.IsValid)
                 return StatusCode(StatusCodes.Status400BadRequest, ResponseApiService.Response(StatusCodes.Status400BadRequest,validate.Errors));
             var data = await getUserByEmailAndPassQuery.Execute(email,password);
+            
             if (data == null)
                 return StatusCode(StatusCodes.Status404NotFound,ResponseApiService.Response(StatusCodes.Status404NotFound));
+            
+            data.Token=getTokenJWT.Execute(data.UserId.ToString());
+            
             return StatusCode(StatusCodes.Status200OK,ResponseApiService.Response(StatusCodes.Status200OK,data));
         }
     }

@@ -7,14 +7,6 @@ using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-builder.Services
-    .AddWebApi()
-    .AddCommon()
-    .AddApplication()
-    .AddExternal(builder.Configuration)
-    .AddPersistence(builder.Configuration);
-
 builder.Services.AddControllers();
 
 if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")=="local")
@@ -28,6 +20,15 @@ else
     builder.Configuration.AddAzureKeyVault(new Uri(keyvaultURL), new DefaultAzureCredential());    
 }
 
+builder.Services
+    .AddWebApi()
+    .AddCommon()
+    .AddApplication()
+    .AddExternal(builder.Configuration)
+    .AddPersistence(builder.Configuration);
+
 var app = builder.Build();
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
 app.Run();
