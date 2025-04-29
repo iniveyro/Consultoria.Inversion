@@ -4,6 +4,7 @@ using Consultoria.Inversion.Common;
 using Consultoria.Inversion.Application;
 using Consultoria.Inversion.External;
 using Azure.Identity;
+using System.Runtime.Intrinsics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,12 @@ builder.Services
     .AddPersistence(builder.Configuration);
 
 var app = builder.Build();
+app.UseSwagger();
+app.UseSwaggerUI(options => 
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json","v1");
+    options.RoutePrefix = string.Empty;
+});
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
