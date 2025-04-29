@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 
 namespace Consultoria.Inversion.External
 {
@@ -32,7 +34,10 @@ namespace Consultoria.Inversion.External
                     ValidAudience = configuration["audience-jwt"]
                 };
             });
-
+            services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions
+            {
+                ConnectionString = configuration["ApplicationInsightsConnectionString"]
+            });
             return services;
         }
     }
