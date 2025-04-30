@@ -34,10 +34,11 @@ namespace Consultoria.Inversion.External
                     ValidAudience = configuration["audience-jwt"]
                 };
             });
+            /*
             services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions
             {
                 ConnectionString = configuration["ApplicationInsightsConnectionString"]
-            });
+            });*/
             return services;
         }
     }

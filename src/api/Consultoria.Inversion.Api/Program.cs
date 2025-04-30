@@ -10,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Configuration.AddJsonFile("appsettings.secret.json", optional: false, reloadOnChange: true);
+/*
 if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")=="local")
 {
     //Forma local
@@ -20,7 +22,7 @@ else
     var keyvaultURL = builder.Configuration["keyVaultURL"] ?? string.Empty;
     builder.Configuration.AddAzureKeyVault(new Uri(keyvaultURL), new DefaultAzureCredential());    
 }
-
+*/
 builder.Services
     .AddWebApi()
     .AddCommon()
